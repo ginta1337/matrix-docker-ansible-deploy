@@ -10,7 +10,7 @@ over to `matrix.example.com`.
 As we discuss in [Server Delegation](howto-server-delegation.md), there are 2 different ways to set up such delegation:
 
 - either by serving a `https://example.com/.well-known/matrix/server` file (from the base domain!)
-- or by  using a `_matrix._tcp` DNS SRV record (don't confuse this with the `_matrix-identity._tcp` SRV record described below)
+- or by using a `_matrix._tcp` DNS SRV record (don't confuse this with the `_matrix-identity._tcp` SRV record described below)
 
 This playbook mostly discusses the well-known file method, because it's easier to manage with regard to certificates.
 If you decide to go with the alternative method ([Server Delegation via a DNS SRV record (advanced)](howto-server-delegation.md#server-delegation-via-a-dns-srv-record-advanced)), please be aware that the general flow that this playbook guides you through may not match what you need to do.
@@ -45,6 +45,7 @@ When you're done configuring DNS, proceed to [Configuring the playbook](configur
 | [SchildiChat](configuring-playbook-client-schildichat.md) web client                                                    | CNAME | `schildichat`                  | -        | -      | -    | `matrix.example.com`      |
 | [wsproxy](configuring-playbook-bridge-mautrix-wsproxy.md) sms bridge                                                    | CNAME | `wsproxy`                      | -        | -      | -    | `matrix.example.com`      |
 | [Buscarron](configuring-playbook-bot-buscarron.md) helpdesk bot                                                         | CNAME | `buscarron`                    | -        | -      | -    | `matrix.example.com`      |
+| [Rageshake](docs/configuring-playbook-rageshake.md) bug report server                                                   | CNAME | `rageshake`                    | -        | -      | -    | `matrix.example.com`      |
 | [Postmoogle](configuring-playbook-bot-postmoogle.md)/[Email2Matrix](configuring-playbook-email2matrix.md) email bridges | MX    | `matrix`                       | 10       | 0      | -    | `matrix.example.com`      |
 | [Postmoogle](configuring-playbook-bot-postmoogle.md) email bridge                                                       | TXT   | `matrix`                       | -        | -      | -    | `v=spf1 ip4:<your-ip> -all` |
 | [Postmoogle](configuring-playbook-bot-postmoogle.md) email bridge                                                       | TXT   | `_dmarc.matrix`                | -        | -      | -    | `v=DMARC1; p=quarantine;`   |
@@ -77,9 +78,13 @@ The `hydrogen.example.com` subdomain may be necessary, because this playbook cou
 
 The `cinny.example.com` subdomain may be necessary, because this playbook could install the [Cinny](https://github.com/ajbura/cinny) web client. The installation of Cinny is disabled by default, it is not a core required component. To learn how to install it, see our [configuring Cinny guide](configuring-playbook-client-cinny.md). If you do not wish to set up Cinny, feel free to skip the `cinny.example.com` DNS record.
 
+The `schildichat.example.com` subdomain may be necessary, because this playbook could install the [SchildiChat](https://github.com/SchildiChat/schildichat-desktop) web client. The installation of SchildiChat is disabled by default, it is not a core required component. To learn how to install it, see our [configuring SchildiChat guide](configuring-playbook-client-schildichat.md). If you do not wish to set up SchildiChat, feel free to skip the `schildichat.example.com` DNS record.
+
 The `wsproxy.example.com` subdomain may be necessary, because this playbook could install the [wsproxy](https://github.com/mautrix/wsproxy) web client. The installation of wsproxy is disabled by default, it is not a core required component. To learn how to install it, see our [configuring wsproxy guide](configuring-playbook-bridge-mautrix-wsproxy.md). If you do not wish to set up wsproxy, feel free to skip the `wsproxy.example.com` DNS record.
 
 The `buscarron.example.com` subdomain may be necessary, because this playbook could install the [buscarron](https://github.com/etkecc/buscarron) bot. The installation of buscarron is disabled by default, it is not a core required component. To learn how to install it, see our [configuring buscarron guide](configuring-playbook-bot-buscarron.md). If you do not wish to set up buscarron, feel free to skip the `buscarron.example.com` DNS record.
+
+The `rageshake.example.com` subdomain may be necessary, because this playbook could install the [rageshake](https://github.com/matrix-org/rageshake) bug report server. The installation of Rageshake is disabled by default, it is not a core required component. To learn how to install it, see our [configuring Rageshake guide](configuring-playbook-rageshake.md). If you do not wish to set up Rageshake, feel free to skip the `rageshake.example.com` DNS record.
 
 ## `_matrix-identity._tcp` SRV record setup
 
