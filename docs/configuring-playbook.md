@@ -64,11 +64,11 @@ When you're done with all the configuration you'd like to do, continue with [Ins
 
 - [Adjusting SSL certificate retrieval](configuring-playbook-ssl-certificates.md) (optional, advanced)
 
-- [Serving your base domain using this playbook's nginx server](configuring-playbook-base-domain-serving.md) (optional)
+- [Serving the base domain](configuring-playbook-base-domain-serving.md) (optional)
 
-- [Configure the Traefik reverse-proxy](configuring-playbook-traefik.md) (optional, advanced)
+- [Configuring the Traefik reverse-proxy](configuring-playbook-traefik.md) (optional, advanced)
 
-- [Using your own webserver, instead of this playbook's default reverse-proxy](configuring-playbook-own-webserver.md) (optional, advanced)
+- [Using your own webserver, instead of this playbook's Traefik reverse-proxy](configuring-playbook-own-webserver.md) (optional, advanced)
 
 - [Adjusting TURN server configuration](configuring-playbook-turn.md) (optional, advanced)
 
@@ -94,7 +94,7 @@ When you're done with all the configuration you'd like to do, continue with [Ins
 
 - [Setting up Appservice Double Puppet](configuring-playbook-appservice-double-puppet.md) (optional)
 
-- [Setting up an ma1sd Identity Server](configuring-playbook-ma1sd.md) (optional)
+- [Setting up ma1sd Identity Server](configuring-playbook-ma1sd.md) (optional)
 
 - [Setting up Synapse Admin](configuring-playbook-synapse-admin.md) (optional)
 
@@ -104,9 +104,9 @@ When you're done with all the configuration you'd like to do, continue with [Ins
 
 - [Setting up the Shared Secret Auth password provider module](configuring-playbook-shared-secret-auth.md) (optional, advanced)
 
-- [Setting up the LDAP password provider module](configuring-playbook-ldap-auth.md) (optional, advanced)
+- [Setting up the LDAP authentication password provider module](configuring-playbook-ldap-auth.md) (optional, advanced)
 
-- [Setting up the ldap-registration-proxy](configuring-playbook-matrix-ldap-registration-proxy.md) (optional, advanced)
+- [Setting up matrix-ldap-registration-proxy](configuring-playbook-matrix-ldap-registration-proxy.md) (optional, advanced)
 
 - [Setting up Synapse Simple Antispam](configuring-playbook-synapse-simple-antispam.md) (optional, advanced)
 
@@ -200,7 +200,7 @@ When you're done with all the configuration you'd like to do, continue with [Ins
 
 - [Setting up maubot](configuring-playbook-bot-maubot.md) - a plugin-based Matrix bot system (optional)
 
-- [Setting up honoroit](configuring-playbook-bot-honoroit.md) - a helpdesk bot (optional)
+- [Setting up Honoroit](configuring-playbook-bot-honoroit.md) - a helpdesk bot (optional)
 
 - [Setting up Go-NEB](configuring-playbook-bot-go-neb.md) - an extensible multifunctional bot (optional)
 
@@ -208,7 +208,7 @@ When you're done with all the configuration you'd like to do, continue with [Ins
 
 - [Setting up Draupnir](configuring-playbook-bot-draupnir.md) - a moderation tool/bot, forked from Mjolnir and maintained by its former leader developer (optional)
 
-- [Setting up Draupnir for all](configuring-playbook-appservice-draupnir-for-all.md) - like the [Draupnir bot](configuring-playbook-bot-draupnir.md) mentioned above, but running in appservice mode and supporting multiple instances (optional)
+- [Setting up Draupnir for all/D4A](configuring-playbook-appservice-draupnir-for-all.md) - like the [Draupnir bot](configuring-playbook-bot-draupnir.md) mentioned above, but running in appservice mode and supporting multiple instances (optional)
 
 - [Setting up Buscarron](configuring-playbook-bot-buscarron.md) - a bot you can use to send any form (HTTP POST, HTML) to a (encrypted) Matrix room (optional)
 
@@ -230,7 +230,7 @@ When you're done with all the configuration you'd like to do, continue with [Ins
 
 - [Setting up the ntfy push notifications server](configuring-playbook-ntfy.md) (optional)
 
-- [Setting up a Cactus Comments server](configuring-playbook-cactus-comments.md) - a federated comment system built on Matrix (optional)
+- [Setting up Cactus Comments](configuring-playbook-cactus-comments.md) - a federated comment system built on Matrix (optional)
 
 - [Setting up the rageshake bug report server](configuring-playbook-rageshake.md) (optional)
 

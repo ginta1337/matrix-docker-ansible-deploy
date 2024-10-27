@@ -1,4 +1,4 @@
-# Setting up matrix-alertmanager-receiver (optional)
+# Setting up Prometheus Alertmanager integration via matrix-alertmanager-receiver (optional)
 
 The playbook can install and configure the [matrix-alertmanager-receiver](https://github.com/metio/matrix-alertmanager-receiver) service for you. It's a [client](https://prometheus.io/docs/alerting/latest/clients/) for Prometheus' [Alertmanager](https://prometheus.io/docs/alerting/latest/alertmanager/), allowing you to deliver alerts to Matrix rooms.
 
@@ -104,4 +104,4 @@ route:
 
 .. where `URL_HERE` looks like `https://matrix.example.com/matrix-alertmanager-receiver-RANDOM_VALUE_HERE/alert/some-room-name` or `https://matrix.example.com/matrix-alertmanager-receiver-RANDOM_VALUE_HERE/alert/!qporfwt:example.com`.
 
-This bot does **not** accept room invitations automatically (like many other bots do). To deliver messages to rooms, **the bot must be joined to all rooms manually** - see Step 5 of the [Account and room preparation](#account-and-room-preparation) section.
+This bot does **not** accept room invitations automatically (like many other bots do). To deliver messages to rooms, **the bot must be joined to all rooms manually** - see Step 4 of the [Account and room preparation](#account-and-room-preparation) section.

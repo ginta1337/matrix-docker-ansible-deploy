@@ -876,7 +876,7 @@ Thanks to [Benjamin Kampmann](https://github.com/gnunicorn) for [getting it star
 
 The upcoming Element X clients ([Element X iOS](https://github.com/vector-im/element-x-ios) and [Element X Android](https://github.com/vector-im/element-x-android)) require the `sliding-sync` proxy to do their job. **These clients are still in beta** (especially Element X Android, which requires manual compilation to get it working with a non-`matrix.org` homeseserver). Playbook users can now easily give these clients a try and help test them thanks to us having `sliding-sync` support.
 
-To get started, see our [Setting up Sliding Sync proxy](docs/configuring-playbook-sliding-sync-proxy.md) documentation page.
+To get started, see our [Setting up the Sliding Sync proxy](docs/configuring-playbook-sliding-sync-proxy.md) documentation page.
 
 
 # 2023-03-02
@@ -1464,7 +1464,7 @@ With the new Synapse-customization feature in the playbook, we use the original 
 
 Thanks to [@TheOneWithTheBraid](https://github.com/TheOneWithTheBraid), we now support installing [matrix-ldap-registration-proxy](https://gitlab.com/activism.international/matrix_ldap_registration_proxy) - a proxy which handles Matrix registration requests and forwards them to LDAP.
 
-See our [Setting up the ldap-registration-proxy](docs/configuring-playbook-matrix-ldap-registration-proxy.md) documentation to get started.
+See our [Setting up matrix-ldap-registration-proxy](docs/configuring-playbook-matrix-ldap-registration-proxy.md) documentation to get started.
 
 
 # 2022-09-15
@@ -1564,7 +1564,7 @@ Below we'll discuss **potential backward incompatibilities**.
 
 Thanks to [Julian-Samuel Gebühr (@moan0s)](https://github.com/moan0s), the playbook can now set up [Cactus Comments](https://cactus.chat) - federated comment system for the web based on Matrix.
 
-See our [Setting up a Cactus Comments server](docs/configuring-playbook-cactus-comments.md) documentation to get started.
+See our [Setting up Cactus Comments](docs/configuring-playbook-cactus-comments.md) documentation to get started.
 
 
 # 2022-08-23
@@ -1684,8 +1684,8 @@ See our [Setting up the ntfy push notifications server](docs/configuring-playboo
 
 **If you are using the [Hookshot bridge](docs/configuring-playbook-bridge-hookshot.md)**, you may find that:
 1. **Metrics may not be enabled by default anymore**:
-  - If Prometheus is enabled (`prometheus_enabled: true`), then Hookshot metrics will be enabled automatically (`matrix_hookshot_metrics_enabled: true`). These metrics will be collected from the local (in-container) Prometheus over the container network.
-  - **If Prometheus is not enabled** (you are either not using Prometheus or are using an external one), **Hookshot metrics will not be enabled by default anymore**. Feel free to enable them by setting `matrix_hookshot_metrics_enabled: true`. Also, see below.
+    - If Prometheus is enabled (`prometheus_enabled: true`), then Hookshot metrics will be enabled automatically (`matrix_hookshot_metrics_enabled: true`). These metrics will be collected from the local (in-container) Prometheus over the container network.
+    - **If Prometheus is not enabled** (you are either not using Prometheus or are using an external one), **Hookshot metrics will not be enabled by default anymore**. Feel free to enable them by setting `matrix_hookshot_metrics_enabled: true`. Also, see below.
 2. When metrics are meant to be **consumed by an external Prometheus server**, `matrix_hookshot_metrics_proxying_enabled` needs to be set to `true`, so that metrics would be exposed (proxied) "publicly" on `https://matrix.example.com/metrics/hookshot`. To make use of this, you'll also need to enable the new `https://matrix.example.com/metrics/*` endpoints mentioned above, using `matrix_nginx_proxy_proxy_matrix_metrics_enabled`. Learn more in our [Collecting metrics to an external Prometheus server](docs/configuring-playbook-prometheus-grafana.md#collecting-metrics-to-an-external-prometheus-server) documentation.
 3. **We've changed the URL we're exposing Hookshot metrics at** for external Prometheus servers. Until now, you were advised to consume Hookshot metrics from `https://stats.example.com/hookshot/metrics` (working in conjunction with `matrix_nginx_proxy_proxy_synapse_metrics`). From now on, **this no longer works**. As described above, you need to start consuming metrics from `https://matrix.example.com/metrics/hookshot`.
 
@@ -1708,7 +1708,7 @@ See our [Setting up the ntfy push notifications server](docs/configuring-playboo
 
 Thanks to [CyberShadow](https://github.com/CyberShadow), the playbook can now install the [go-skype-bridge](https://github.com/kelaresg/go-skype-bridge) bridge for bridging Matrix to [Skype](https://www.skype.com/).
 
-See our [Setting up Go Skype Bridge](docs/configuring-playbook-bridge-go-skype-bridge.md) documentation to get started.
+See our [Setting up Go Skype Bridge bridging](docs/configuring-playbook-bridge-go-skype-bridge.md) documentation to get started.
 
 The playbook has supported [mx-puppet-skype](https://github.com/Sorunome/mx-puppet-skype) bridging (see [Setting up MX Puppet Skype bridging](docs/configuring-playbook-bridge-mx-puppet-skype.md)) since [2020-04-09](#2020-04-09), but `mx-puppet-skype` is reportedly broken.
 
@@ -1757,7 +1757,7 @@ You could then restart services: `ansible-playbook -i inventory/hosts setup.yml 
 
 # 2022-04-25
 
-## buscarron bot support
+## Buscarron bot support
 
 Thanks to [Aine](https://gitlab.com/etke.cc) of [etke.cc](https://etke.cc/), the playbook can now set up [the Buscarron bot](https://github.com/etkecc/buscarron). It's a bot you can use to send any form (HTTP POST, HTML) to a (encrypted) Matrix room
 
@@ -2038,7 +2038,7 @@ The playbook can now install the [Sygnal](https://github.com/matrix-org/sygnal) 
 
 This is only useful to people who develop/build their own Matrix client applications.
 
-Additional details are available in our [Setting up Sygnal](docs/configuring-playbook-sygnal.md) docs.
+Additional details are available in our [Setting up the Sygnal push gateway](docs/configuring-playbook-sygnal.md) docs.
 
 
 # 2021-03-16
@@ -2136,9 +2136,9 @@ To migrate to the new setup, expect a few minutes of downtime, while you follow 
 2. Generate a strong password to be used for your superuser Postgres user (called `matrix`). You can use `pwgen -s 64 1` to generate it, or some other tool. The **maximum length** for a Postgres password is 100 bytes (characters). Don't go crazy!
 
 3. Update your playbook's `inventory/host_vars/matrix.example.com/vars.yml` file, adding a line like this:
-```yaml
-matrix_postgres_connection_password: 'YOUR_POSTGRES_PASSWORD_HERE'
-```
+    ```yaml
+    matrix_postgres_connection_password: 'YOUR_POSTGRES_PASSWORD_HERE'
+    ```
 
 .. where `YOUR_POSTGRES_PASSWORD_HERE` is to be replaced with the password you generated during step #2.
 
@@ -2148,31 +2148,31 @@ matrix_postgres_connection_password: 'YOUR_POSTGRES_PASSWORD_HERE'
 7. Open a Postgres shell: `/usr/local/bin/matrix-postgres-cli`
 8. Execute the following query, while making sure to **change the password inside** (**don't forget the ending `;`**):
 
-```sql
-CREATE ROLE matrix LOGIN SUPERUSER PASSWORD 'YOUR_POSTGRES_PASSWORD_HERE';
-```
+    ```sql
+    CREATE ROLE matrix LOGIN SUPERUSER PASSWORD 'YOUR_POSTGRES_PASSWORD_HERE';
+    ```
 
 .. where `YOUR_POSTGRES_PASSWORD_HERE` is to be replaced with the password you generated during step #2.
 
 9. Execute the following queries as you see them (no modifications necessary, so you can just **paste them all at once**):
 
-```sql
-CREATE DATABASE matrix OWNER matrix;
+    ```sql
+    CREATE DATABASE matrix OWNER matrix;
 
-ALTER DATABASE postgres OWNER TO matrix;
-ALTER DATABASE template0 OWNER TO matrix;
-ALTER DATABASE template1 OWNER TO matrix;
+    ALTER DATABASE postgres OWNER TO matrix;
+    ALTER DATABASE template0 OWNER TO matrix;
+    ALTER DATABASE template1 OWNER TO matrix;
 
-\c matrix;
+    \c matrix;
 
-ALTER DATABASE homeserver RENAME TO synapse;
+    ALTER DATABASE homeserver RENAME TO synapse;
 
-ALTER ROLE synapse NOSUPERUSER NOCREATEDB NOCREATEROLE;
+    ALTER ROLE synapse NOSUPERUSER NOCREATEDB NOCREATEROLE;
 
-\quit
-```
+    \quit
+    ```
 
-You may need to press *Enter* after pasting the lines above.
+    You may need to press *Enter* after pasting the lines above.
 
 10. Re-run the playbook normally: `ansible-playbook -i inventory/hosts setup.yml --tags=setup-all,start`
 
@@ -2717,7 +2717,7 @@ It forces a [Postgres database upgrade](docs/maintenance-postgres.md#upgrading-p
 
 Thanks to a contribution from [Björn Marten](https://github.com/tripleawwy) from [netresearch](https://www.netresearch.de/), the playbook can now install and configure [matrix-appservice-webhooks](https://github.com/turt2live/matrix-appservice-webhooks) for you. This bridge provides support for Slack-compatible webhooks.
 
-Learn more in [Setting up Appservice Webhooks](docs/configuring-playbook-bridge-appservice-webhooks.md).
+Learn more in [Setting up Appservice Webhooks bridging](docs/configuring-playbook-bridge-appservice-webhooks.md).
 
 
 # 2020-01-12
@@ -3292,7 +3292,7 @@ When using:
 ## IRC bridging support
 
 [Devon Maloney (@Plailect)](https://github.com/Plailect) has done some great work bringing IRC bridging support via [matrix-appservice-irc](https://github.com/TeDomum/matrix-appservice-irc).
-To learn more, see the [Setting up Appservice IRC](docs/configuring-playbook-bridge-appservice-irc.md) documentation page.
+To learn more, see the [Setting up Appservice IRC bridging](docs/configuring-playbook-bridge-appservice-irc.md) documentation page.
 
 
 # 2019-01-29
@@ -3757,7 +3757,7 @@ The Client APIs run only on the http port (8008) now.
 ## mxisd Identity Server support
 
 The playbook now sets up an [mxisd](https://github.com/kamax-io/mxisd) Identity Server for you by default.
-Additional details are available in [Adjusting mxisd Identity Server configuration](docs/configuring-playbook-mxisd.md).
+Additional details are available in [Setting up ma1sd Identity Server](docs/configuring-playbook-mxisd.md).
 
 
 # 2018-08-14
