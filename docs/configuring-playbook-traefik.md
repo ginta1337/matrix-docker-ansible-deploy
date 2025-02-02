@@ -4,7 +4,6 @@ By default, this playbook installs and manages a [Traefik](https://doc.traefik.i
 
 This Ansible role support various configuration options. Feel free to consult its `default/main.yml` variables file.
 
-
 ## Adjusting SSL certificate retrieval
 
 See the dedicated [Adjusting SSL certificate retrieval](configuring-playbook-ssl-certificates.md) documentation page.
@@ -35,7 +34,8 @@ traefik_dashboard_basicauth_user: YOUR_USERNAME_HERE
 traefik_dashboard_basicauth_password: YOUR_PASSWORD_HERE
 ```
 
-**WARNING**: Enabling the dashboard on a hostname you use for something else (like `matrix_server_fqn_matrix` in the configuration above) may cause conflicts. Enabling the Traefik Dashboard makes Traefik capture all `/dashboard` and `/api` requests and forward them to itself. If any of the services hosted on the same hostname requires any of these 2 URL prefixes, you will experience problems. So far, we're not aware of any playbook services which occupy these endpoints and are likely to cause conflicts.
+> [!WARNING]
+> Enabling the dashboard on a hostname you use for something else (like `matrix_server_fqn_matrix` in the configuration above) may cause conflicts. Enabling the Traefik Dashboard makes Traefik capture all `/dashboard` and `/api` requests and forward them to itself. If any of the services hosted on the same hostname requires any of these 2 URL prefixes, you will experience problems. So far, we're not aware of any playbook services which occupy these endpoints and are likely to cause conflicts.
 
 ## Additional configuration
 
@@ -59,7 +59,7 @@ However, if your service does not run on a container or runs on another machine,
 
 If you want to host another webserver would be reachable via `my-fancy-website.example.net` from the internet and via `https://<internal webserver IP address>:<internal port>` from inside your network, you can make the playbook's integrated Traefik instance reverse-proxy the traffic to the correct host.
 
-Prerequisites: DNS and routing for the domain `my-fancy-website.example.net` need to be set up correctly. In this case, you'd be pointing the domain name to your Matrix server - `my-fancy-website.example.net` would be a CNAME going to `matrix.example.com`.
+Prerequisites: DNS and routing for the domain `my-fancy-website.example.net` need to be set up correctly. In this case, you'd be pointing the domain name to your Matrix server — `my-fancy-website.example.net` would be a CNAME going to `matrix.example.com`.
 
 First, we have to adjust the static configuration of Traefik, so that we can add additional configuration files:
 
@@ -88,7 +88,6 @@ traefik_configuration_extension_yaml: |
   serversTransport:
     insecureSkipVerify: true
 ```
-
 
 Next, you have to add a new dynamic configuration file for Traefik that contains the actual information of the server using the `aux_file_definitions` variable. In this example, we will terminate SSL at the Traefik instance and connect to the other server via HTTPS. Traefik will now take care of managing the certificates.
 
@@ -136,8 +135,8 @@ Changing the `url` to one with an `http://` prefix would allow to connect to the
 
 With these changes, all TCP traffic will be reverse-proxied to the target system.
 
-**WARNING**: This configuration might lead to problems or need additional steps when a [certbot](https://certbot.eff.org/) behind Traefik also tries to manage [Let's Encrypt](https://letsencrypt.org/) certificates, as Traefik captures all traffic to ```PathPrefix(`/.well-known/acme-challenge/`)```.
-
+> [!WARNING]
+> This configuration might lead to problems or need additional steps when a [certbot](https://certbot.eff.org/) behind Traefik also tries to manage [Let's Encrypt](https://letsencrypt.org/) certificates, as Traefik captures all traffic to ```PathPrefix(`/.well-known/acme-challenge/`)```.
 
 ## Traefik behind a `proxy_protocol` reverse-proxy
 

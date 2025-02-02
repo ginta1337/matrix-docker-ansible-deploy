@@ -6,7 +6,7 @@
 matrix_alertmanager_receiver_enabled: true
 
 # renovate: datasource=docker depName=docker.io/metio/matrix-alertmanager-receiver
-matrix_alertmanager_receiver_version: 2024.10.23
+matrix_alertmanager_receiver_version: 2024.12.18
 
 matrix_alertmanager_receiver_scheme: https
 
@@ -218,7 +218,7 @@ matrix_alertmanager_receiver_config_templating_resolved_template: |-
 #
 # For a more advanced customization, you can extend the default (see `matrix_alertmanager_receiver_configuration_extension_yaml`)
 # or completely replace this variable with your own template.
-matrix_alertmanager_receiver_configuration_yaml: "{{ lookup('template', 'templates/config.yml.j2') }}"
+matrix_alertmanager_receiver_configuration_yaml: "{{ lookup('template', 'templates/config.yaml.j2') }}"
 
 matrix_alertmanager_receiver_configuration_extension_yaml: |
   # Your custom YAML configuration for matrix-alertmanager-receiver goes here.

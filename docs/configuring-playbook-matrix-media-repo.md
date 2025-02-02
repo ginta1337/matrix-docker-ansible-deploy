@@ -30,6 +30,7 @@ By default, the media-repo will use the local filesystem for data storage. You c
 ## Configuring the media-repo
 
 Additional common configuration options:
+
 ```yaml
 
 # The postgres database pooling options
@@ -46,7 +47,7 @@ matrix_media_repo_database_max_idle_connections: 5
 # See docs/admin.md for information on what these people can do. They must belong to one of the
 # configured homeservers above.
 # matrix_media_repo_admins: [
-#   "@your_username:example.org"
+#   "@alice:example.org"
 # ]
 
 matrix_media_repo_admins: []
@@ -59,10 +60,10 @@ matrix_media_repo_admins: []
 # To disable this datastore, making it readonly, specify `forKinds: []`.
 #
 # The kinds available are:
-#   thumbnails    - Used to store thumbnails of media (local and remote).
-#   remote_media  - Original copies of remote media (servers not configured by this repo).
-#   local_media   - Original uploads for local media.
-#   archives      - Archives of content (GDPR and similar requests).
+#   thumbnails    — Used to store thumbnails of media (local and remote).
+#   remote_media  — Original copies of remote media (servers not configured by this repo).
+#   local_media   — Original uploads for local media.
+#   archives      — Archives of content (GDPR and similar requests).
 matrix_media_repo_datastore_file_for_kinds: ["thumbnails", "remote_media", "local_media", "archives"]
 matrix_media_repo_datastore_s3_for_kinds: []
 
@@ -87,7 +88,7 @@ matrix_media_repo_datastore_s3_opts_bucket_name: "your-media-bucket"
 
 ```
 
-Full list of configuration options with documentation can be found in [`roles/custom/matrix-media-repo/defaults/main.yml`](https://github.com/spantaleev/matrix-docker-ansible-deploy/blob/master/roles/custom/matrix-media-repo/defaults/main.yml)
+Full list of configuration options with documentation can be found in [`roles/custom/matrix-media-repo/defaults/main.yml`](../roles/custom/matrix-media-repo/defaults/main.yml)
 
 ## Signing Keys
 
